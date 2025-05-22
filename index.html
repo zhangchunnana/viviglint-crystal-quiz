@@ -1,10 +1,207 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title></title>
-	</head>
-	<body>
-		水晶測試首頁
-	</body>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>微光水晶測試 - 優雅日系設計</title>
+<meta name="description" content="探索多款互動水晶測試，發掘屬於你的靈性能量寶石，開始專屬療癒旅程。" />
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Sawarabi+Mincho&display=swap');
+
+  body {
+    margin: 0;
+    padding: 50px 24px;
+    background: linear-gradient(135deg, #f7f9fc 0%, #ffffff 100%);
+    font-family: 'Poppins', sans-serif;
+    color: #3B4A6B; /* 柔和深藍灰 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1 {
+    font-family: 'M PLUS Rounded 1c', serif;
+    font-weight: 400;
+    font-size: 3rem;
+    text-align: center;
+    color: #3B4A6B;
+    margin-bottom: 6px;
+    letter-spacing: 0.15em;
+    text-shadow: 0 1px 2px rgba(59,74,107,0.2);
+  }
+
+  p.subtitle {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 50px;
+    color: #6B7A99;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    line-height: 1.6;
+  }
+
+  .grid-container {
+    max-width: 1150px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .card {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 32px 28px;
+    box-shadow:
+      0 8px 20px rgba(59,74,107,0.07),
+      0 0 8px rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.5s forwards;
+  }
+
+  .card:hover {
+    transform: translateY(-12px) scale(1.04);
+    box-shadow:
+      0 20px 40px rgba(59,74,107,0.15),
+      0 0 20px rgba(205, 225, 255, 0.5);
+    background: rgba(255, 255, 255, 1);
+  }
+
+  .card:nth-child(1) { animation-delay: 0.1s; }
+  .card:nth-child(2) { animation-delay: 0.2s; }
+  .card:nth-child(3) { animation-delay: 0.3s; }
+  .card:nth-child(4) { animation-delay: 0.4s; }
+  .card:nth-child(5) { animation-delay: 0.5s; }
+  .card:nth-child(6) { animation-delay: 0.6s; }
+  .card:nth-child(7) { animation-delay: 0.7s; }
+  .card:nth-child(8) { animation-delay: 0.8s; }
+  .card:nth-child(9) { animation-delay: 0.9s; }
+
+  .card h3 {
+    font-family: 'M PLUS Rounded 1c', serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: #2C3E70;
+    margin-bottom: 18px;
+    letter-spacing: 0.05em;
+  }
+
+  .card p {
+    flex-grow: 1;
+    color: #5D6A8B;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .btn-link {
+    align-self: flex-start;
+    padding: 14px 36px;
+    border-radius: 30px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-decoration: none;
+    background: linear-gradient(135deg, #b6c1f0 0%, #8ea4f3 100%);
+    color: white;
+    box-shadow: 0 5px 10px rgba(142,164,243,0.6);
+    transition: background 0.4s ease, box-shadow 0.4s ease;
+    user-select: none;
+  }
+
+  .btn-link:hover {
+    background: linear-gradient(135deg, #8ea4f3 0%, #b6c1f0 100%);
+    box-shadow: 0 8px 20px rgba(142,164,243,0.8);
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 70px;
+    font-size: 0.95rem;
+    color: #A1AFC8;
+    font-weight: 300;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .grid-container {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 26px;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .grid-container {
+      grid-template-columns: 1fr;
+    }
+    body {
+      padding: 40px 20px;
+    }
+    h1 {
+      font-size: 2.4rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<h1>微光水晶測試</h1>
+<p class="subtitle">輕盈優雅的水晶互動體驗，探索專屬你的療癒能量</p>
+
+<div class="grid-container">
+
+  <div class="card" tabindex="0" role="button" aria-label="能量分類測驗" onclick="location.href='quiz1.html'">
+    <h3>能量分類測驗</h3>
+    <p>深入分析你的個人能量屬性，推薦最適合你的守護水晶。</p>
+    <a class="btn-link" href="quiz1.html" tabindex="-1">立即體驗</a>
+  </div>
+
+  <div class="card" tabindex="0" role="button" aria-label="直覺抽選水晶" onclick="location.href='quiz2.html'">
+    <h3>直覺抽選水晶</h3>
+    <p>憑直覺選擇一顆水晶，了解它背後的神秘力量。</p>
+    <a class="btn-link" href="quiz2.html" tabindex="-1">開始抽選</a>
+  </div>
+
+  <div class="card" tabindex="0" role="button" aria-label="今日能量提醒" onclick="location.href='daily-crystal.html'">
+    <h3>今日能量提醒</h3>
+    <p>結合每日星象與水晶能量，提供當日最佳佩戴建議。</p>
+    <a class="btn-link" href="daily-crystal.html" tabindex="-1">查看詳情</a>
+  </div>
+
+  <div class="card" tabindex="0" role="button" aria-label="水晶功效全解析" onclick="location.href='crystal-meaning.html'">
+    <h3>水晶功效全解析</h3>
+    <p>詳細介紹熱門水晶功效及適用人群，助你選擇最合適的寶石。</p>
+    <a class="btn-link" href="crystal-meaning.html" tabindex="-1">深入了解</a>
+  </div>
+
+  <div class="card" tabindex="0" role="button" aria-label="訂製專屬水晶" onclick="location.href='custom-order.html'">
+    <h3>訂製專屬水晶</h3>
+    <p>根據個人需求與能量調和，打造獨一無二的水晶飾品。</p>
+    <a class="btn-link" href="custom-order.html" tabindex="-1">開始訂製</a>
+  </div>
+
+  <div class="card" tabindex="0" role="button" aria-label="水晶配戴指南" onclick="location.href='wear-guide.html'">
+    <h3>水晶配戴指南</h3>
+    <p>學習正確的佩戴方法，讓水晶能量發揮最大效果。</p>
+    <a class="btn-link" href="wear-guide.html" tabindex="-1">查看指南</a>
+  </div>
+
+</div>
+
+<footer>
+  © 2025 微光手作  —  讓每一顆水晶都發光
+</footer>
+
+</body>
 </html>
