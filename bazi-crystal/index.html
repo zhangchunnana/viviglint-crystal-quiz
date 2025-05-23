@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>八字五行水晶推薦測試</title>
+ <style>
+   body {
+     background: #f9f9f9;
+     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+     padding: 30px 15px;
+     color: #333;
+     max-width: 600px;
+     margin: auto;
+   }
+   h1 {
+     text-align: center;
+     color: #222;
+     margin-bottom: 25px;
+     font-weight: 700;
+   }
+   form {
+     background: #fff;
+     padding: 20px 25px;
+     border-radius: 10px;
+     box-shadow: 0 8px 18px rgba(0,0,0,0.1);
+     margin-bottom: 30px;
+   }
+   label {
+     display: block;
+     margin-bottom: 10px;
+     font-weight: 600;
+     color: #444;
+   }
+   select, input[type=date] {
+     width: 100%;
+     padding: 14px 16px;
+     border: 2px solid #ccc;
+     border-radius: 8px;
+     font-size: 16px;
+     transition: border-color 0.3s, box-shadow 0.3s;
+     cursor: pointer;
+     background: white;
+     appearance: none; /* 去除默认箭头 */
+     background-image:
+       linear-gradient(45deg, transparent 50%, #7b5cff 50%),
+       linear-gradient(135deg, #7b5cff 50%, transparent 50%),
+       linear-gradient(to right, #ccc, #ccc);
+     background-position:
+       calc(100% - 20px) calc(1em + 2px),
+       calc(100% - 15px) calc(1em + 2px),
+       calc(100% - 25px) 0.5em;
+     background-size: 5px 5px, 5px 5px, 1px 1.5em;
+     background-repeat: no-repeat;
+   }
+   select:focus, input[type=date]:focus {
+     border-color: #7b5cff;
+     box-shadow: 0 0 8px rgba(123, 92, 255, 0.6);
+     outline: none;
+   }
+   button {
+     margin-top: 20px;
+     width: 100%;
+     background: #7b5cff;
+     color: white;
+     font-size: 18px;
+     padding: 12px 0;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     font-weight: 700;
+     transition: background 0.3s;
+   }
+   button:hover {
+     background: #6248d6;
+   }
+   #result {
+     min-height: 180px;
+     background: #fff;
+     padding: 25px 25px 30px;
+     border-radius: 12px;
+     box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+     font-size: 16px;
+     line-height: 1.6;
+     color: #444;
+     white-space: pre-line;
+     transition: opacity 0.5s ease;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+   }
+   #result.empty::before {
+     content: "請填寫上方資料並點擊「開始算命」";
+     color: #999;
+     font-size: 18px;
+     font-style: italic;
+   }
+ 
+   /* 八字部分排版 */
+   #result .bazi-block {
+     display: flex;
+     justify-content: space-between;
+     margin-bottom: 16px;
+   }
+   #result .bazi-item {
+     flex: 1;
+     text-align: center;
+     padding: 10px 0;
+     border-radius: 8px;
+     background: #f0f0ff;
+     margin: 0 4px;
+     font-weight: 600;
+     font-size: 18px;
+     color: #3a3a99;
+     user-select: text;
+     box-shadow: 0 2px 6px rgba(59,59,153,0.15);
+   }
+   #result .bazi-item span {
+     display: block;
+     margin-top: 8px;
+     font-size: 14px;
+     color: #666;
+     font-weight: 400;
+   }
+ 
+   /* 五行分析排版 */
+   #result .wuxing-container {
+     display: flex;
+     justify-content: space-around;
+     margin-top: 24px;
+     flex-wrap: wrap;
+   }
+   #result .wuxing-item {
+     background: #fff;
+     flex: 1 1 100px;
+     margin: 6px 10px;
+     border-radius: 10px;
+     box-shadow: 0 4px 10px rgba(123, 92, 255, 0.15);
+     padding: 14px 12px;
+     text-align: center;
+     font-weight: 600;
+     font-size: 16px;
+     color: #5a4de8;
+     cursor: default;
+     user-select: text;
+   }
+   #result .wuxing-item .icon {
+     font-size: 20px;
+     margin-bottom: 6px;
+   }
+   #result .recommend-text {
+     margin-top: 18px;
+     font-weight: 500;
+     color: #444;
+     white-space: pre-wrap;
+   }
+ </style>
+</head>
+<body>
+
+<h1>八字五行水晶推薦測試</h1>
+
+<form id="baziForm" autocomplete="off">
+  <label for="gender">性別</label>
+  <select id="gender" required>
+    <option value="" disabled selected>請選擇</option>
+    <option value="male">男</option>
+    <option value="female">女</option>
+  </select>
+
+  <label for="birthday">生日（西元 yyyy-mm-dd）</label>
+  <input type="date" id="birthday" required max="" />
+
+  <label for="birthTime">出生時辰</label>
+  <select id="birthTime" required>
+    <option value="" disabled selected>請選擇或未知</option>
+    <option value="23">子時（23:00–00:59）</option>
+    <option value="1">丑時（01:00–02:59）</option>
+    <option value="3">寅時（03:00–04:59）</option>
+    <option value="5">卯時（05:00–06:59）</option>
+    <option value="7">辰時（07:00–08:59）</option>
+    <option value="9">巳時（09:00–10:59）</option>
+    <option value="11">午時（11:00–12:59）</option>
+    <option value="13">未時（13:00–14:59）</option>
+    <option value="15">申時（15:00–16:59）</option>
+    <option value="17">酉時（17:00–18:59）</option>
+    <option value="19">戌時（19:00–20:59）</option>
+    <option value="21">亥時（21:00–22:59）</option>
+    <option value="unknown">未知</option>
+  </select>
+
+  <button type="submit">開始解析</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+	// 渲染结果时，没数据时加上empty类和默认提示
+	const resultDiv = document.getElementById('result');
+	if(!baziArr.filter(x => x).length) {
+	  resultDiv.classList.add('empty');
+	  resultDiv.innerHTML = '';
+	  return;
+	} else {
+	  resultDiv.classList.remove('empty');
+	}
+	
+	// 下面继续正常渲染内容…
+  // 設定 max 日期為今天，避免未來日期
+  const birthdayInput = document.getElementById('birthday');
+  birthdayInput.max = new Date().toISOString().split('T')[0];
+
+  // 天干地支表
+  const heavenlyStems = ['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+  const earthlyBranches = ['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+
+  // 節氣大致時間(陽曆)，簡化版，資料來源可擴展使用真實萬年曆資料
+  const solarTerms = [
+    {name:"立春",month:2,day:4},
+    {name:"驚蟄",month:3,day:6},
+    {name:"清明",month:4,day:5},
+    {name:"立夏",month:5,day:6},
+    {name:"小滿",month:5,day:21},
+    {name:"芒種",month:6,day:6},
+    {name:"夏至",month:6,day:21},
+    {name:"小暑",month:7,day:7},
+    {name:"大暑",month:7,day:23},
+    {name:"立秋",month:8,day:8},
+    {name:"白露",month:9,day:8},
+    {name:"秋分",month:9,day:23},
+    {name:"寒露",month:10,day:8},
+    {name:"霜降",month:10,day:23},
+    {name:"立冬",month:11,day:7},
+    {name:"小雪",month:11,day:22},
+    {name:"大雪",month:12,day:7},
+    {name:"冬至",month:12,day:21},
+    {name:"小寒",month:1,day:6},
+    {name:"大寒",month:1,day:20}
+  ];
+
+  // 計算節氣，簡單用月日判斷，並對應月份柱
+  function getSolarTermIndex(date) {
+    // 將節氣依月日排序（1月在後面，先排2月以後的節氣）
+    const sortedTerms = solarTerms.slice().sort((a,b) => {
+      if(a.month===1) return 1;
+      if(b.month===1) return -1;
+      if(a.month===b.month) return a.day - b.day;
+      return a.month - b.month;
+    });
+
+    for(let i = 0; i < sortedTerms.length; i++){
+      const term = sortedTerms[i];
+      let cmpMonth = term.month;
+      if(cmpMonth === 1) cmpMonth = 13; // 讓1月排在12月後面方便比較
+
+      let dMonth = date.getMonth() + 1;
+      if(dMonth === 1) dMonth = 13;
+
+      if(dMonth < cmpMonth || (dMonth === cmpMonth && date.getDate() < term.day)){
+        return (i + sortedTerms.length - 1) % 24;
+      }
+    }
+    return sortedTerms.length - 1;
+  }
+
+  // 干支計算：60甲子起點為甲子年（1864年），用此年份做基準推算
+  function getYearGanZhi(year) {
+    const baseYear = 1864; // 甲子年
+    const diff = year - baseYear;
+    const gan = heavenlyStems[diff % 10];
+    const zhi = earthlyBranches[diff % 12];
+    return gan + zhi;
+  }
+
+  // 月柱推算：用節氣判定節氣所在月份，月柱干從年干決定(簡化版)
+  // 1月份為臘月(上一年十二月)，月支從寅月(虎月)開始順推
+  function getMonthGanZhi(yearGan, date) {
+    // 月支固定依節氣在節氣表上的序數決定，傳統以立春為正月起點
+    // 先找立春的節氣序號
+    const liChunIndex = solarTerms.findIndex(s => s.name === "立春");
+
+    // 找出此日期所在節氣index，取得距離立春差多少個節氣(月)
+    const termIndex = getSolarTermIndex(date);
+    let monthIndex = termIndex - liChunIndex;
+    if(monthIndex < 0) monthIndex += 24;
+    monthIndex = Math.floor(monthIndex / 2) + 1; // 每2個節氣一個月，+1是農曆月序（正月）
+
+    // 月支從寅開始，寅為地支索引2，順推月序-1
+    const monthZhiIndex = (2 + monthIndex -1) % 12;
+    const monthZhi = earthlyBranches[monthZhiIndex];
+
+    // 月干與年干對照（甲丙戊庚壬對應甲；乙丁己辛癸對應乙）
+    // 月干索引 = (年干索引*2 + 月序 - 2) % 10
+    const yearGanIndex = heavenlyStems.indexOf(yearGan[0]);
+    const monthGanIndex = (yearGanIndex * 2 + monthIndex - 2) % 10;
+    const monthGan = heavenlyStems[monthGanIndex];
+
+    return monthGan + monthZhi;
+  }
+
+  // 日柱推算：簡化版，透過萬年曆資料查表，這裡用示範日期範圍 1900-2100 範圍內的簡易算法(中國農曆算法較複雜，此處用固定起點加天數餘數推)
+  function getDayGanZhi(date) {
+    // 1900/1/1為甲戌日（第11天），故推算法如下
+    const baseDate = new Date(1900,0,1);
+    const diffDays = Math.floor((date - baseDate) / (1000*60*60*24));
+    const ganIndex = (11 + diffDays) % 10;
+    const zhiIndex = (11 + diffDays) % 12;
+    return heavenlyStems[ganIndex] + earthlyBranches[zhiIndex];
+  }
+
+  // 時辰干支推算：時辰地支固定，天干跟日干有固定對應規則
+  function getTimeGanZhi(dayGan, birthTime) {
+    if(birthTime === 'unknown') return "未知";
+
+    const timeZhiIndexMap = {
+      23: 0,  // 子
+      1: 1,   // 丑
+      3: 2,   // 寅
+      5: 3,   // 卯
+      7: 4,   // 辰
+      9: 5,   // 巳
+      11:6,   // 午
+      13:7,   // 未
+      15:8,   // 申
+      17:9,   // 酉
+      19:10,  // 戌
+      21:11   // 亥
+    };
+
+    const dayGanIndex = heavenlyStems.indexOf(dayGan[0]);
+    const timeZhiIndex = timeZhiIndexMap[birthTime];
+
+    // 時干索引 = (日干索引*2 + 時支索引) % 10
+    const timeGanIndex = (dayGanIndex * 2 + timeZhiIndex) % 10;
+    const timeGan = heavenlyStems[timeGanIndex];
+    const timeZhi = earthlyBranches[timeZhiIndex];
+
+    return timeGan + timeZhi;
+  }
+
+  // 五行對應
+  const wuxingMap = {
+    '甲':'木','乙':'木',
+    '丙':'火','丁':'火',
+    '戊':'土','己':'土',
+    '庚':'金','辛':'金',
+    '壬':'水','癸':'水'
+  };
+
+  // 五行總結
+  function countWuxing(baziArr) {
+    const count = {木:0, 火:0, 土:0, 金:0, 水:0};
+    for(const gz of baziArr) {
+      const gan = gz[0];
+      const zhi = gz[1];
+      const ganXing = wuxingMap[gan];
+      // 地支五行簡化版本（只做主五行，實際更複雜）
+      const zhiWuxingMap = {
+        '子':'水','丑':'土','寅':'木','卯':'木','辰':'土','巳':'火','午':'火','未':'土','申':'金','酉':'金','戌':'土','亥':'水'
+      };
+      count[ganXing]++;
+      count[zhiWuxingMap[zhi]]++;
+    }
+    return count;
+  }
+
+  // 根據五行缺失推薦水晶（簡化示例）
+  const crystalRecommendations = {
+    '木': {name:'綠幽靈、水晶',color:'綠色'},
+    '火': {name:'紅瑪瑙、石榴石',color:'紅色'},
+    '土': {name:'黃水晶、虎眼石',color:'黃色'},
+    '金': {name:'白水晶、銀色飾品',color:'白色/金色'},
+    '水': {name:'藍晶石、黑曜石',color:'藍色/黑色'}
+  };
+
+  // 主程序
+  document.getElementById('baziForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    const gender = document.getElementById('gender').value;
+    const birthdayStr = document.getElementById('birthday').value;
+    const birthTime = document.getElementById('birthTime').value;
+
+    if(!gender || !birthdayStr || !birthTime) {
+      alert('請完整填寫資料');
+      return;
+    }
+
+    const birthDate = new Date(birthdayStr + 'T12:00:00'); // 中午時段避免時差問題
+
+    // 推算年柱
+    const yearGZ = getYearGanZhi(birthDate.getFullYear());
+
+    // 推算月柱
+    const monthGZ = getMonthGanZhi(yearGZ, birthDate);
+
+    // 推算日柱
+    const dayGZ = getDayGanZhi(birthDate);
+
+    // 推算時柱
+    const timeGZ = getTimeGanZhi(dayGZ, birthTime);
+
+    // 整理八字
+    const baziArr = [yearGZ, monthGZ, dayGZ, timeGZ === "未知" ? "" : timeGZ];
+
+    // 五行計算
+    const wuxingCount = countWuxing(baziArr.filter(x => x));
+
+    // 找缺失五行
+    const missing = Object.entries(wuxingCount).filter(([k,v]) => v === 0).map(([k]) => k);
+    let recommendText;
+    if(missing.length === 0) {
+      recommendText = '您的五行均衡，建議維持目前狀態，平衡最重要。';
+    } else {
+      recommendText = missing.map(w => {
+        const rec = crystalRecommendations[w];
+        return `${w}行缺乏，推薦水晶：${rec.name}，代表顏色：${rec.color}`;
+      }).join('\n');
+    }
+
+    // 組結果文字
+    let resultText = `【八字推算結果】\n`;
+    resultText += `性別：${gender === 'male' ? '男' : '女'}\n`;
+    resultText += `生日：${birthdayStr}\n`;
+    resultText += `出生時辰：${birthTime === 'unknown' ? '未知' : earthlyBranches[(birthTime === '23' ? 0 : (birthTime-1)/2)] + '時'}\n\n`;
+    resultText += `年柱：${yearGZ}\n`;
+    resultText += `月柱：${monthGZ}\n`;
+    resultText += `日柱：${dayGZ}\n`;
+    resultText += `時柱：${timeGZ === "未知" ? "未知" : timeGZ}\n\n`;
+    resultText += `五行分析：\n`;
+    for(const [w, c] of Object.entries(wuxingCount)) {
+      resultText += `  ${w}：${c} 個\n`;
+    }
+    resultText += `\n建議：\n${recommendText}`;
+
+    const resultDiv = document.getElementById('result');
+    resultDiv.textContent = resultText;
+    resultDiv.style.opacity = 0;
+    setTimeout(() => { resultDiv.style.opacity = 1; }, 100);
+  });
+  
+  
+  
+</script>
+
+</body>
+</html>
