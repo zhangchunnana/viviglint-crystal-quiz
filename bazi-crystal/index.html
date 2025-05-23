@@ -4,158 +4,94 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>八字五行水晶推薦測試</title>
- <style>
-   body {
-     background: #f9f9f9;
-     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-     padding: 30px 15px;
-     color: #333;
-     max-width: 600px;
-     margin: auto;
-   }
-   h1 {
-     text-align: center;
-     color: #222;
-     margin-bottom: 25px;
-     font-weight: 700;
-   }
-   form {
-     background: #fff;
-     padding: 20px 25px;
-     border-radius: 10px;
-     box-shadow: 0 8px 18px rgba(0,0,0,0.1);
-     margin-bottom: 30px;
-   }
-   label {
-     display: block;
-     margin-bottom: 10px;
-     font-weight: 600;
-     color: #444;
-   }
-   select, input[type=date] {
-     width: 100%;
-     padding: 14px 16px;
-     border: 2px solid #ccc;
-     border-radius: 8px;
-     font-size: 16px;
-     transition: border-color 0.3s, box-shadow 0.3s;
-     cursor: pointer;
-     background: white;
-     appearance: none; /* 去除默认箭头 */
-     background-image:
-       linear-gradient(45deg, transparent 50%, #7b5cff 50%),
-       linear-gradient(135deg, #7b5cff 50%, transparent 50%),
-       linear-gradient(to right, #ccc, #ccc);
-     background-position:
-       calc(100% - 20px) calc(1em + 2px),
-       calc(100% - 15px) calc(1em + 2px),
-       calc(100% - 25px) 0.5em;
-     background-size: 5px 5px, 5px 5px, 1px 1.5em;
-     background-repeat: no-repeat;
-   }
-   select:focus, input[type=date]:focus {
-     border-color: #7b5cff;
-     box-shadow: 0 0 8px rgba(123, 92, 255, 0.6);
-     outline: none;
-   }
-   button {
-     margin-top: 20px;
-     width: 100%;
-     background: #7b5cff;
-     color: white;
-     font-size: 18px;
-     padding: 12px 0;
-     border: none;
-     border-radius: 8px;
-     cursor: pointer;
-     font-weight: 700;
-     transition: background 0.3s;
-   }
-   button:hover {
-     background: #6248d6;
-   }
-   #result {
-     min-height: 180px;
-     background: #fff;
-     padding: 25px 25px 30px;
-     border-radius: 12px;
-     box-shadow: 0 10px 25px rgba(0,0,0,0.07);
-     font-size: 16px;
-     line-height: 1.6;
-     color: #444;
-     white-space: pre-line;
-     transition: opacity 0.5s ease;
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     text-align: center;
-   }
-   #result.empty::before {
-     content: "請填寫上方資料並點擊「開始算命」";
-     color: #999;
-     font-size: 18px;
-     font-style: italic;
-   }
- 
-   /* 八字部分排版 */
-   #result .bazi-block {
-     display: flex;
-     justify-content: space-between;
-     margin-bottom: 16px;
-   }
-   #result .bazi-item {
-     flex: 1;
-     text-align: center;
-     padding: 10px 0;
-     border-radius: 8px;
-     background: #f0f0ff;
-     margin: 0 4px;
-     font-weight: 600;
-     font-size: 18px;
-     color: #3a3a99;
-     user-select: text;
-     box-shadow: 0 2px 6px rgba(59,59,153,0.15);
-   }
-   #result .bazi-item span {
-     display: block;
-     margin-top: 8px;
-     font-size: 14px;
-     color: #666;
-     font-weight: 400;
-   }
- 
-   /* 五行分析排版 */
-   #result .wuxing-container {
-     display: flex;
-     justify-content: space-around;
-     margin-top: 24px;
-     flex-wrap: wrap;
-   }
-   #result .wuxing-item {
-     background: #fff;
-     flex: 1 1 100px;
-     margin: 6px 10px;
-     border-radius: 10px;
-     box-shadow: 0 4px 10px rgba(123, 92, 255, 0.15);
-     padding: 14px 12px;
-     text-align: center;
-     font-weight: 600;
-     font-size: 16px;
-     color: #5a4de8;
-     cursor: default;
-     user-select: text;
-   }
-   #result .wuxing-item .icon {
-     font-size: 20px;
-     margin-bottom: 6px;
-   }
-   #result .recommend-text {
-     margin-top: 18px;
-     font-weight: 500;
-     color: #444;
-     white-space: pre-wrap;
-   }
- </style>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC&display=swap');
+
+    body {
+      font-family: 'Noto Serif TC', serif;
+      background: #fefaf4;
+      margin: 0; padding: 2em;
+      color: #333;
+    }
+    h1 {
+      text-align: center;
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      color: #6b4f4f;
+    }
+    form {
+      max-width: 600px;
+      background: #fff8f0;
+      margin: 0 auto 2rem;
+      padding: 2em 2.5em;
+      border-radius: 14px;
+      box-shadow: 0 5px 12px rgba(123, 88, 88, 0.12);
+      transition: box-shadow 0.3s ease;
+    }
+    form:hover {
+      box-shadow: 0 8px 20px rgba(123, 88, 88, 0.2);
+    }
+    label {
+      display: block;
+      margin-top: 1.3rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #6b4f4f;
+    }
+    input[type=date], select {
+      width: 100%;
+      font-size: 1.05rem;
+      margin-top: 0.4rem;
+      padding: 0.5em 0.7em;
+      border-radius: 8px;
+      border: 1.8px solid #d9b5a5;
+      background: #fff;
+      color: #6b4f4f;
+      transition: border-color 0.3s ease;
+    }
+    input[type=date]:focus, select:focus {
+      border-color: #b86a59;
+      outline: none;
+      box-shadow: 0 0 5px #dca48f88;
+    }
+    button {
+      margin-top: 2.2rem;
+      width: 100%;
+      padding: 1.1em 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: white;
+      background: #b86a59;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px #a65c4caa;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background: #9c4f42;
+      box-shadow: 0 6px 14px #843f37cc;
+    }
+    #result {
+      max-width: 600px;
+      margin: 1rem auto 3rem;
+      padding: 1.8rem 2rem;
+      background: #fff3e5;
+      border-radius: 12px;
+      border: 2px solid #d9b5a5;
+      box-shadow: 0 4px 10px #d9b5a588;
+      color: #5c3b31;
+      font-size: 1.15rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      animation: fadeIn 1.2s ease forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+  </style>
 </head>
 <body>
 
@@ -196,17 +132,6 @@
 <div id="result"></div>
 
 <script>
-	// 渲染结果时，没数据时加上empty类和默认提示
-	const resultDiv = document.getElementById('result');
-	if(!baziArr.filter(x => x).length) {
-	  resultDiv.classList.add('empty');
-	  resultDiv.innerHTML = '';
-	  return;
-	} else {
-	  resultDiv.classList.remove('empty');
-	}
-	
-	// 下面继续正常渲染内容…
   // 設定 max 日期為今天，避免未來日期
   const birthdayInput = document.getElementById('birthday');
   birthdayInput.max = new Date().toISOString().split('T')[0];
@@ -439,10 +364,8 @@
     resultDiv.style.opacity = 0;
     setTimeout(() => { resultDiv.style.opacity = 1; }, 100);
   });
-  
-  
-  
 </script>
 
 </body>
 </html>
+
